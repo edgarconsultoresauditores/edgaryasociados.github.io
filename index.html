@@ -645,14 +645,14 @@
         <div class="contact-icon">📱</div>
         <div>
           <div class="contact-label">WhatsApp</div>
-          <div class="contact-value">+56 9 6591 5261</div>
+          <div class="contact-value"><a href="https://wa.me/56965915261" target="_blank" style="color:var(--navy);text-decoration:none;">+56 9 6591 5261</a></div>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">📧</div>
         <div>
           <div class="contact-label">Email</div>
-          <div class="contact-value">contacto@edgaryasociados.cl</div>
+          <div class="contact-value"><a href="mailto:edgarconsultoresauditores@gmail.com" style="color:var(--navy);text-decoration:none;">edgarconsultoresauditores@gmail.com</a></div>
         </div>
       </div>
       <div class="contact-item">
@@ -723,9 +723,17 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // Form submit
+  // Form submit → opens email client
   document.querySelector('.btn-form').addEventListener('click', () => {
-    alert('¡Mensaje enviado! Te contactaremos pronto. También puedes escribirnos por WhatsApp para una respuesta inmediata.');
+    const inputs = document.querySelectorAll('input');
+    const nombre = inputs[0].value || 'Sin nombre';
+    const telefono = inputs[1].value || 'No indicado';
+    const email = inputs[2].value || 'No indicado';
+    const servicio = document.querySelector('select').value || 'No indicado';
+    const mensaje = document.querySelector('textarea').value || 'Sin mensaje';
+    const subject = encodeURIComponent('Consulta web - ' + nombre);
+    const body = encodeURIComponent('Nombre: ' + nombre + '\nTeléfono: ' + telefono + '\nEmail: ' + email + '\nServicio: ' + servicio + '\n\nMensaje:\n' + mensaje);
+    window.location.href = 'mailto:edgarconsultoresauditores@gmail.com?subject=' + subject + '&body=' + body;
   });
 </script>
 </body>
